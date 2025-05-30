@@ -80,9 +80,9 @@ export function canSignalPrisoner(archerIsAwake, prisonerIsAwake) {
 export let petDogIsPresent = false;
 
 knightIsAwake = true;
-archerIsAwake = true;
+archerIsAwake = false;
 prisonerIsAwake = true;
-petDogIsPresent = true;
+petDogIsPresent = false;
 
 export function canFreePrisoner(
   knightIsAwake,
@@ -90,18 +90,19 @@ export function canFreePrisoner(
   prisonerIsAwake,
   petDogIsPresent
 ) {
-  if ((archerIsAwake === false && knightIsAwake === false) && prisonerIsAwake == true) {
-    return true;
-  } else if (
-    archerIsAwake === false   && petDogIsPresent === true
-  ) {
-    return true;
-  } else if ((archerIsAwake === false && knightIsAwake === false) && prisonerIsAwake == true) {
+  return !archerIsAwake  && ( petDogIsPresent || !knightIsAwake && prisonerIsAwake);
 
-    return true;
-  } else {
-    return false;
-  }
+  // if (
+  //   archerIsAwake === false &&
+  //   knightIsAwake === false &&
+  //   prisonerIsAwake == true
+  // ) {
+  //   return true;
+  // } else if (archerIsAwake === false && petDogIsPresent === true) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
 }
 
 console.log(
