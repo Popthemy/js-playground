@@ -53,10 +53,8 @@ export function frontDoorPassword(word) {
  * @returns {string}
  */
 export function backDoorResponse(line) {
-  const newLine = line.trim();
-  return newLine[newLine.length - 1];
+  return `${line.trim().at(-1)}`;
 }
-console.log(backDoorResponse("Impatiently waits for \t \t"));
 
 /**
  * Format the password for the back door, given the response
