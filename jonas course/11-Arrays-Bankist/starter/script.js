@@ -81,10 +81,96 @@ const displayMovements = function (movement) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
+const acc1Movement = account1.movements;
+// displayMovements(acc1Movement);
 
-displayMovements(account1.movements);
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce(function (acc, movement) {
+    return acc + movement;
+  }, 0);
+  labelBalance.textContent = `${balance}$`;
+};
 
-/////////////////////////////////////////////////
+// calcDisplayBalance(acc1Movement);
+
+const calcDisplaySummary = function (user) {
+  const movements = user.movements;
+  const incomes = movements
+    .filter(movement => movement > 0)
+    .reduce((acc, movement) => acc + movement, 0);
+  labelSumIn.textContent = `${incomes}EUR`;
+
+  const out = movements
+    .filter(movement => movement < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}EUR`;
+
+  const interest = movements
+    .filter(movement => movement > 0)
+    .map(deposit => (deposit * user.interestRate) / 100)
+    .filter(int => int >= 1)
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${Math.abs(interest)}$EUR`;
+};
+
+const usernameDisplay = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(cur => cur[0])
+      .join('');
+  });
+};
+
+usernameDisplay(accounts);
+console.log(accounts);
+
+let currentAccount;
+
+const displayUIMessage = user => {
+  labelWelcome.textContent = `Welcome back, ${user?.owner.split(' ')[0]}`;
+  containerApp.style.opacity = 100;
+
+  // clear the iser details username and password
+  inputLoginPin.value = inputLoginUsername.value = '';
+  // make the cursor to loose focus
+  inputLoginPin.blur();
+};
+
+const successLogin = function (user) {
+  // display ui and message
+  displayUIMessage(user);
+  // display movement
+  displayMovements(user.movements);
+  // display balance
+  calcDisplayBalance(user.movements);
+  // display summary
+  calcDisplaySummary(user);
+};
+
+const loginUser = function (accs) {
+  const username = inputLoginUsername.value;
+  const pin = inputLoginPin.value;
+
+  currentAccount = accs.find(acc => acc.username === username);
+  // optional chaining so when user doesn't exist it doesn't throw an error
+  console.log(currentAccount);
+  return currentAccount?.pin === Number(pin)
+    ? successLogin(currentAccount)
+    : 'incorrect details';
+};
+
+// loginuser(accounts);
+
+btnLogin.addEventListener('click', function (e) {
+  // prevent form from submitting
+  e.preventDefault();
+  // console.log('submitted');
+  loginUser(accounts);
+});
+
+////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
@@ -138,7 +224,7 @@ const uniqueCurrencies = new Set(['USD', 'EUR', 'USD','YEN', 'CHF']);
 uniqueCurrencies.forEach(function(value, _, set){
   console.log(`${value}: ${value}`);
 });
-*/
+
 
 // ----- coding challenge 1
 
@@ -158,3 +244,85 @@ const kate1 = [4, 1, 15, 8, 3];
 
 const julia1Copy = julia1.slice(1, 3);
 checkDogs(julia1Copy, kate1);
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// MAP: it take a call back function and array to return a brand new array 
+// as a result of working the function on each array element
+
+const eurToUSD = 1.1;
+const movementToUSD  = movements.map(function(movement){
+  return movement * eurToUSD;
+})
+
+console.log(movementToUSD);
+
+const movementDescriptions = movements.map((movement, index) =>`Movement${index +1}: You ${movement > 0 ? 'deposit' : 'withdraw'} ${Math.abs(movement)}`
+)
+console.log(movementDescriptions.join('\n'));
+
+
+// FILTER : same as the map method but return a new array that pass the condition of the function
+// the callback should return a boolean if the value pass it make it to the new array
+
+const deposits = movements.filter(function(movement){
+  return movement > 0;
+})
+
+const withdrawals = movements.filter(function(movement){
+  return movement < 0;
+})
+console.log(deposits);
+console.log(withdrawals);
+
+// find method work similar to the filter but return the first element that satisfy the condition.
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+
+// REDUCE : reduce the element of an array to a single value e.g adding all element together
+// reduce method takes 2 parameter : handler and initial value. The handler also takes 4 argument 
+// first is the acc : sum of prev result
+// second current element, third : index , fourth : the array.
+
+// arrow function
+const balance = movements.reduce( (accumulator, movement) => accumulator+ movement, 0)
+
+// using normal function
+// const balance = movements.reduce( function(accumulator, movement)
+// { return accumulator +  movement;}, 0)
+
+// use reduce to fetch the highest value
+const maxMovement = movements.reduce(function(acc, movement,){
+  return acc > movement ? acc : movement;
+} , movements[0])
+
+console.log(balance);
+console.log(maxMovement);
+
+// coding challenge 2
+const dogs1 = [5,2,4,1,15,8,3];
+
+const calAverageHumanAge =function (ages){
+  const humanAges = ages.map(function(age){
+    return age <= 2 ? 2 * age : 16 + age * 4;
+  });
+  console.log(humanAges);
+  const adultHuman = humanAges.filter((age)=> age > 18);
+
+  const average = adultHuman.reduce((acc,cur,i, arr)=>acc+ cur/arr.length , 0);
+  return average;
+  // const ageTotal = adultHuman.reduce((acc,cur)=>acc+cur , 0);
+  // return ageTotal/adultHuman.length;
+}
+
+console.log(calAverageHumanAge(dogs1));
+*/
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUSD = 1.1;
+const totalDepospitsUSD = movements
+  .filter(movement => movement > 0)
+  .map(movement => movement * eurToUSD, 0)
+  .reduce((acc, movement) => acc + movement);
+console.log(totalDepospitsUSD);
