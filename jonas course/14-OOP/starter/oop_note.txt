@@ -1,0 +1,44 @@
+OOP
+creating objects in js
+
+Concept of OOP
+- Polymorphism
+- Inheritance
+- Abstraction
+- Encapsulation
+
+OOP in javascript : prototype
+All objects in javascript are linked Prototype
+
+Prototype contain properties and method that all object linked 
+to that prototype can use called *prototypal Inheritance*
+
+3 way to create prototype
+- Construction function: techniques to create object from a function. 
+  it the wau array , maps / sets are created.
+- ES6 classes: modern way it uses construction function under the hood
+
+- Object.create() : most staightforward way of linking object to a prototype object 
+
+
+the diff. btw regular function and construction function is the `new` keyword
+const Person = function(firstName, birthYear){
+  this.firstName = firstName,
+  this.birthYear = birthYear
+};
+
+const themy = new Person('themy', 1992);
+console.log(themy); // Person(firstName:themy, birthYear:1992)
+
+// When we use new to call the function 4 things happen;
+1. New {} is created
+2. function is called and this = {};
+3. {} linked to the prototype
+4. function automatically return {} 
+
+prototypes
+- each and every function in javascript has prototype
+
+
+the proto of the object is the prototype of the constructor function
+console.log(themy.__proto__ === Person.prototype) //true
