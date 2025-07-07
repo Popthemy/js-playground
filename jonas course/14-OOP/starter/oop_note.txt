@@ -42,3 +42,15 @@ prototypes
 
 the proto of the object is the prototype of the constructor function
 console.log(themy.__proto__ === Person.prototype) //true
+
+The underscore __proto__ always points to the object prototype
+
+The prototype and its prototype object always form the prototype chain.
+This chain is similar to `scope chain` but it works with properties and method.
+
+prototypal Inheritance is a mechanism for inheriting code
+
+Note: 
+1. classes aren't hoisted, they can't be used until declared
+2. they are first class citizen. can be and argument and can be return from a function.
+3. classes are executed in strict mode

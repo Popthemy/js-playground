@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 // constructor func
 const Person = function(firstName, birthYear){
   // instance properties
@@ -50,3 +50,112 @@ console.log(themy.species)
 // property declared on the object directly are the object property
 console.log(themy.hasOwnProperty('firstName')) // true
 console.log(themy.hasOwnProperty('species')) // false
+
+
+const sectFunctionTab = function () {
+  const tabs = document.querySelectorAll('.tab');
+  const contentTab = document.querySelectorAll('.tab__content');
+  const funcTabs = document.querySelector('.func__tabs');
+
+  funcTabs.addEventListener('click', function (e) {
+    const clickedTab = e.target.closest('.tab');
+    if (!clickedTab) return;
+
+    // toggle off active tab alone
+    if (clickedTab.classList.contains('active')) {
+      deactivateTab();
+      return;
+    }
+  
+    deactivateTab();
+    activateTab(clickedTab);
+  });
+
+  const deactivateTab = function () {
+    contentTab.forEach(content => {
+      content.style.maxHeight = null;
+      content.classList.remove('active');
+    });
+
+    tabs.forEach(tab => {
+      tab.classList.remove('active');
+    });
+  };
+
+  const activateTab = function (clicked) {
+    const tabNum = clicked.dataset.tab;
+    const content = document.querySelector(`.tab__content--${tabNum}`);
+
+    clicked.classList.add('active');
+    content.classList.add('active');
+    content.style.maxHeight = content.scrollHeight + 'px';
+  };
+};
+sectFunctionTab();
+
+
+// prototype of an array
+const arr = [2,4,5,6,6,7];
+console.log(arr.__proto__)
+console.log(arr.__proto__ === Array.prototype)
+// walking down the prototype chain
+console.log(arr.__proto__.__proto__) 
+
+
+// first coding challenge
+const Car = function(make, speed){
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function(){
+  this.speed += 10;
+  return `${this.make} is going at ${this.speed} km/hr`
+};
+
+Car.prototype.break = function(){
+  this.speed -= 5;
+  return `${this.make} is going at ${this.speed} km/hr`
+};
+
+const BMW = new Car('BMW',120);
+const Mercede = new Car("Mercedes", 95);
+
+console.log(BMW.accelerate());
+console.log(BMW.accelerate());
+console.log(BMW.accelerate());
+console.log(BMW.break());  
+*/
+
+// Es6 classes are special type of class but they are still function
+// we have class declaration and expression
+
+// class expression
+// const PersonCL = class(){
+
+// }
+
+// class declaration
+class PersonCL {
+  // the class takes the constructor that create the property for the object
+  constructor(firstName, lastName,birthYear) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.birthYear = birthYear;
+  }
+
+  // method stay outside and will be added as the .prototype
+  calAge(){
+    console.log(new Date().getFullYear() - this.birthYear) 
+  }
+
+  greet(){
+    console.log(`Hey ${this.firstName}`)
+  }
+}
+
+const Dolla = new PersonCL('Dola', 'Eli',2003);
+console.log(Dolla)
+Dolla.greet();
+
+// 
