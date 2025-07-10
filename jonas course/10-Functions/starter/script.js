@@ -1,7 +1,8 @@
 'use strict';
 
-// Default paramters values for function
+// Default e values for function
 
+/* 
 const bookings = [];
 
 const createBooking = function (
@@ -128,3 +129,127 @@ lufthansa.buyPlane = function () {
 document
   .querySelector('.buy')
   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+
+// partial application with bind
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 300));
+
+// to apply a default value we can use bind to set the default rate,  set the object position to null
+const addVAT = addTax.bind(null, 0.33);
+
+console.log(addVAT(400));
+console.log(addVAT(50));
+
+const newAddTax = (rate, value) => () => {
+  rate = 0.33;
+  return value + value * rate;
+}
+console.log(newAddTax(0.1, 400)());
+
+const poll = {
+  question: 'What is your favourite programming language?',
+  option: ['0: Javascript', '1: python', '2: Rust', '3: C++'],
+  answers: new Array(4).fill(0),
+  displayResult(type){
+    if (type === 'array'){
+      console.log(this.answers);
+    }else if (type === 'string') {
+      console.log(this.join(','))
+    }},
+};
+
+const registerNewAnswer = function () {
+  const answer = Number(prompt(`${poll.question} \n ${poll.option.join('\n')}\n(write option number) `));
+  
+  console.log(poll);
+  answer >= 0 && answer <= 3 ? poll.answers[answer]++ : console.log('option is not in bound 0-3'); 
+  console.log(poll);
+
+  const resultType = prompt('Choose result representation: Array or String').toLowerCase();
+  poll.displayResult(resultType);
+};
+
+document.querySelector('.poll').addEventListener('click', registerNewAnswer);
+
+
+// const poll = {
+//   question: 'What is your favourite programming language?',
+//   option: ['0: Javascript', '1: python', '2: Rust', '3: C++'],
+//   answers: new Array(4).fill(0),
+//   displayResult(type=array) {
+//     if (type === 'string') {
+//       console.log(this.join(','));
+//     } else{
+//       console.log(this.answers);
+//     }
+//   },
+// };
+
+const testData = {
+  answers: [5, 2, 3],
+};
+const testData2 = {
+  answers: [5, 2,4,5,6, 3],
+};
+
+
+const resultFunc = poll.displayResult.bind(testData);
+resultFunc('array');
+
+const resultFunc2 = poll.displayResult.bind(testData2);
+resultFunc2('array');
+
+// immediately invoked function expression: this are function 
+// that only execute once and disappear after their execution.
+
+(function(){
+  console.log('I am the first function to run once');
+})();
+
+(() => console.log('second example of IIFE using arrow function'))();
+
+// Closure: it an internal representation that give a function access to 
+// variable of the parent function even after the function has returned 
+// you can view the closure using console.dir(func_name)
+
+const secureBooking = function(){
+  let passenger = 0;
+
+  return function(){
+    passenger++;
+    console.log(passenger);
+  }
+};
+const booker = secureBooking()
+booker()
+booker()
+console.dir(booker) // check the closure for the variable
+
+// closure doesn't happen only when a function is returned
+
+const boardPassenger = function (n, wait) {
+  const perGroup = n/3;
+
+  // the setTimeout is a function that take a function handler and time 
+  setTimeout( 
+    function (){
+      console.log( `We are now boarding all ${n} passengers`);
+      console.log(`There are 3 groups, each with ${perGroup} pasengers`);
+    }
+    , wait * 60)
+  console.log(`We start boarding in ${wait} seconds`);
+}
+
+boardPassenger(180,3);
+*/
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  header.addEventListener('click',function (){
+    header.style.color = 'blue';
+    console.log('Thank you i just got activated')
+  });}
+)()

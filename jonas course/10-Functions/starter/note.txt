@@ -1,0 +1,11 @@
+function are first class citizen means function are treated as values and can be passed 
+as argument. function are another type of object. this allows us to also
+
+- Store function in variables or properties
+- pass function as arguments to other function
+- return function from other function
+- call method on other function e.g using bind method
+
+High order function
+- it either receives (call back function) or return function or both.
+
