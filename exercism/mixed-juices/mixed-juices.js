@@ -43,26 +43,24 @@ function timeToMixJuice(name) {
  */
 function limesToCut(wedgesNeeded, limes) {
   let limeCount = 0;
+  const wedgeType = {
+    large:10,
+    medium:8,
+    small:6
+  }
 
   for (let [i, type] of limes.entries()) {
     if (wedgesNeeded <= 0) {
       break;
-    } else if ("large" === type) {
+    } else {
       ++limeCount;
-      wedgesNeeded -= 10;
-    } else if ("small" === type) {
-      ++limeCount;
-      wedgesNeeded -= 6;
-      continue;
-    } else if ("medium" === type) {
-      ++limeCount;
-      wedgesNeeded -= 8;
-      continue;
+      // console.log(wedgeType[type])
+      wedgesNeeded -= wedgeType[type];
     };
   };
   return limeCount;
 }
-// console.log(limesToCut(10, ["medium", "small"]));
+console.log(limesToCut(10, ["medium", "small"]));
 /**
  * Determines which juices still need to be prepared after the end of the shift.
  *
@@ -82,18 +80,18 @@ function remainingOrders(timeLeft, orders) {
       }
     }
   }
-  // return [];
+  return [];
 }
-console.log(
-  remainingOrders(13, [
-    "Pure Strawberry Joy",
-    "Pure Strawberry Joy",
-    "Vitality",
-    "Tropical Island",
-    "All or Nothing",
-    "All or Nothing",
-    "All or Nothing",
-    "Green Garden",
-    "Limetime",
-  ])
-);
+// console.log(
+//   remainingOrders(13, [
+//     "Pure Strawberry Joy",
+//     "Pure Strawberry Joy",
+//     "Vitality",
+//     "Tropical Island",
+//     "All or Nothing",
+//     "All or Nothing",
+//     "All or Nothing",
+//     "Green Garden",
+//     "Limetime",
+//   ])
+// );
