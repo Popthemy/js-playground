@@ -60,7 +60,7 @@ function limesToCut(wedgesNeeded, limes) {
   };
   return limeCount;
 }
-console.log(limesToCut(10, ["medium", "small"]));
+// console.log(limesToCut(10, ["medium", "small"]));
 /**
  * Determines which juices still need to be prepared after the end of the shift.
  *
@@ -69,29 +69,23 @@ console.log(limesToCut(10, ["medium", "small"]));
  * @returns {string[]} remaining orders after the time is up
  */
 function remainingOrders(timeLeft, orders) {
-  while (timeLeft > 0) {
-    for (let [i, order] of orders.entries()) {
-      console.log(`Time left: ${timeLeft}, Order: ${order}`);
-      timeLeft -= timeToMixJuice(order);
-      if (timeLeft <= 0) {
-        return orders.slice(i + 1);
-      }else if (i === orders.length - 1) {
-        return [];
-      }
-    }
-  }
-  return [];
+  do {
+    timeLeft -= timeToMixJuice(orders.shift());
+ } while(timeLeft > 0 && orders.length > 0)
+
+  return orders;
 }
-// console.log(
-//   remainingOrders(13, [
-//     "Pure Strawberry Joy",
-//     "Pure Strawberry Joy",
-//     "Vitality",
-//     "Tropical Island",
-//     "All or Nothing",
-//     "All or Nothing",
-//     "All or Nothing",
-//     "Green Garden",
-//     "Limetime",
-//   ])
-// );
+
+console.log(
+  remainingOrders(13, [
+    "Pure Strawberry Joy",
+    "Pure Strawberry Joy",
+    "Vitality",
+    "Tropical Island",
+    "All or Nothing",
+    "All or Nothing",
+    "All or Nothing",
+    "Green Garden",
+    "Limetime",
+  ])
+);
