@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 3rem;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial,
+    sans-serif;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 400;
+  padding-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  padding-bottom: 20px;
+}
+
+button{
+  border-radius: 15px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0px auto;
+}
+
+.banner {
+  margin-bottom: 3rem;
+  padding: 5%;
+  background: linear-gradient(to left, #e5dd03, rgba(151, 146, 6, 0.2));
+  text-align: center;
+  border: none;
+  border-radius: 15px;
+  transform: scale3d(1, 1, 1);
+  transition: all 0.3s ease-in;
+}
+
+.banner:hover {
+  background-color: rgb(29, 190, 29);
+  transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.cal-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  position: top;
+  top: 0;
+  border-radius: 3px;
+  height: 700px;
+}
+
+.calculator, .summary {
+  box-shadow: -4px -10px 9px rgba(160, 7, 7, 0.08);
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.cal-form {
+  display: grid;
+  gap: 15px;
+  padding-top: 30px;
+  margin-bottom: 20px;
+  grid-template-columns: 2fr 1fr 1fr auto;
+}
+
+.cal-form label {
+  padding-top: 30px;
+  padding-bottom: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control {
+  padding: 15px;
+  border: 3px dashed rgba(151, 146, 6, 0.2);
+  border-radius: 18px;
+  font-size: 1rem;
+  background-color: white;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #e5dd03;
+}
+
+.error-message{
+  color: red;
+}
+
+.btn {
+  border: none;
+  background-color: #e5dd03;
+  padding: 12px 20px;
+  cursor: pointer;
+  align-self: flex-end;
+  text-transform: uppercase;
+  transition: transform 0.63s ease;
+  font-weight: 700;
+}
+
+.btn:hover{
+  transform: translateY(-10px);
+}
+
+.btn-secondary{
+  background-color:red;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 2fr auto;
+  padding: 16px 16px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+  background-color: rgb(232, 237, 153);
+  border-radius: 15px;
+  align-items: center;
+  border-top: 10px solid rgb(29, 190, 29);
+  transition: border-top 0.9s ease-in;
+}
+
+.card:hover{
+  border-top: none;
+}
+
+.hidden{
+  display: none;
+}
+

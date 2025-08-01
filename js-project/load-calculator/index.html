@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Load Calculator</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="banner">
+        <h1>Load Calculator</h1>
+        <p>
+          Find out your power requirement to know the right solution for your
+          office / home
+        </p>
+      </div>
+    </section>
+
+    <section class="cal-container">
+      <div class="calculator">
+        <h2>Add Your Appliances</h2>
+        <p>
+          Select your appliances and specify how many hours you use them daily
+        </p>
+
+        <form class="cal-form">
+          <div class="form-group">
+            <label for="name"> Appliance Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="e.g., LED Bulb, Fan, TV"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="power">Power (Watts)</label>
+            <input
+              type="number"
+              class="form-control"
+              id="power"
+              placeholder="100"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="hours">Hours/Day</label>
+            <input
+              type="number"
+              class="form-control"
+              id="hours"
+              placeholder="8"
+            />
+          </div>
+          <button class="btn add-new-appliance">Add</button>
+        </form>
+
+        <div class="appliance-list">
+          <div class="card hidden">
+            <div class="appliance-info">
+              <div class="appliance-name">fan</div>
+              <div class="appliance-energy">10W × 19h = 190Wh/day</div>
+            </div>
+            <div class="appliance-power">10W
+              <button class="btn btn-secondary">Remove</button>
+            </div>
+          </div>
+
+          <div class="empty-appliance">
+                <p>
+              ⚡⚡⚡ <br />
+              No appliances added yet. Start by adding your electrical devices
+              above.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h2>System Recommendation</h2>
+        <div>
+          <p>
+            Total load (W) <br />
+            <span>0</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
