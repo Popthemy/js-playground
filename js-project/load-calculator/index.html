@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Load Calculator</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"
+    ></script>
     <script defer src="js/main.js"></script>
   </head>
   <body>
@@ -24,8 +28,7 @@
         <p>
           Select your appliances and specify how many hours you use them daily
         </p>
-
-        <form class="cal-form">
+        <form class="cal-form form-1">
           <div class="form-group">
             <label for="name"> Appliance Name</label>
             <input
@@ -47,15 +50,15 @@
           </div>
 
           <div class="form-group">
-            <label for="hours">Hours/Day</label>
+            <label for="hours">Hours</label>
             <input
-              type="number"
+              type="float"
               class="form-control"
               id="hours"
               placeholder="8"
             />
           </div>
-          <button class="btn add-new-appliance">Add</button>
+          <button class="btn form-btn">Add</button>
         </form>
 
         <div class="appliance-list">
@@ -64,30 +67,89 @@
               <div class="appliance-name">fan</div>
               <div class="appliance-energy">10W × 19h = 190Wh/day</div>
             </div>
-            <div class="appliance-power">10W
+            <div class="appliance-power">
+              10W
               <button class="btn btn-secondary">Remove</button>
             </div>
           </div>
 
           <div class="empty-appliance">
-                <p>
+            <p>
               ⚡⚡⚡ <br />
               No appliances added yet. Start by adding your electrical devices
               above.
             </p>
           </div>
         </div>
+
+        <div class="extra-action hidden">
+          <button class="btn btn-download">Download</button>
+          <button class="btn btn-secondary btn-reset">Reset</button>
+        </div>
       </div>
 
       <div class="summary">
-        <h2>System Recommendation</h2>
-        <div>
-          <p>
-            Total load (W) <br />
-            <span>0</span>
-          </p>
+        <h2>System Calculations</h2>
+
+        <div class="results">
+          <div class="system-details">
+            <p>
+              <span class="sys-load">0</span> <br />
+              Total Power Consumption (W) <br />
+            </p>
+          </div>
+          <div class="system-details">
+            <p>
+              <span class="sys-energy">0</span> <br />
+              Daily Energy (WH)
+            </p>
+          </div>
+          <div class="system-details">
+            <p>
+              <span class="sys-battery">0</span> <br />
+              Battery (AH)<br />
+              <small class="msg" id="msg-voltageTime"></small>
+            </p>
+          </div>
+          <div class="system-details">
+            <p>
+              <span class="sys-panels">0</span> <br />
+              Solar Panels Capacity (W) <br />
+              <small class="msg" id="msg-panelwatt"></small>
+            </p>
+          </div>
         </div>
       </div>
+    </section>
+
+    <section class="backup hidden">
+      <p class="caution">
+        <b>Caution:</b> <br />
+        If you don't include a backup time we won't be able to calculate the
+        battery and solar panel you will need for powering your Solar-inverter
+        System.
+      </p>
+      <form class="cal-form form-2">
+        <button class="btn btn-modal">&times;</button>
+        <div class="form-group">
+          <label for="backupDay"> Number of backup Days </label>
+          <input
+            type="float"
+            class="form-control"
+            id="backupDay"
+            placeholder="8"
+          />
+        </div>
+        <div class="form-group">
+          <label for="voltage"> System Voltage </label>
+          <select class="form-control" id="sys-voltage">
+            <option value="12">12V</option>
+            <option value="24">24V</option>
+          </select>
+        </div>
+        <button class="btn form-btn">Submit</button>
+      </form>
+      <div class="overlay"></div>
     </section>
   </body>
 </html>
