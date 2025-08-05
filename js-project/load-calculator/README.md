@@ -42,7 +42,7 @@ Live Demo: [load-calc.onrender.com](https://load-calc.onrender.com)
 To run the project locally:
 
 ```bash
-git clone https://github.com/your-username/load-calculator.git
+git clone https://github.com/Popthemy/js-playground.git
 cd load-calculator
 open index.html
 ```
