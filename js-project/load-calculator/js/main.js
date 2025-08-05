@@ -11,6 +11,7 @@ const systemLoad = document.querySelector(".sys-load");
 const systemLEnergy = document.querySelector(".sys-energy");
 const systemBattery = document.querySelector(".sys-battery");
 const systemPanels = document.querySelector(".sys-panels");
+const systemTotalAppliances = document.querySelector(".sys-total-appliances");
 
 const applianceName = document.getElementById("name");
 const appliancePower = document.getElementById("power");
@@ -194,6 +195,7 @@ const updateSystemCalculation = () => {
 
   systemLoad.textContent = totals.totalLoad;
   systemLEnergy.textContent = totals.totalDailyEnergy;
+  systemTotalAppliances.textContent = applianceList.length;
 
   // Battery calculations (assuming 24V system,  with 80% DOD)
   systemBattery.textContent = Math.ceil(
@@ -222,27 +224,48 @@ btnReset.addEventListener("click", function (e) {
   cards.forEach((card) => removeCard(card));
 });
 
-btnDownload.addEventListener("click", async function () {
+btnDownload.addEventListener("click", async function (e) {
+  e.preventDefault();
+  if (!applianceList.length) {
+    alert("Please add appliances before downloading the report.");
+    return;
+  }
+
   const content = document.querySelector(".cal-container");
   const date = new Date();
 
-  const file = `load_calculator_${date.getDate()}${date.getMonth()}${date.getFullYear()}`;
-  // console.log(filename);
+  const file = `load_calculator_${date.getDate()}${
+    date.getMonth() + 1
+  }${date.getFullYear()}`;
+
   try {
+    // 1. Backup original styles
+    const originalWidth = content.style.width;
+    const originalMaxWidth = content.style.maxWidth;
+
+    // 2. Apply temporary styles to simulate 768px viewport
+    content.style.width = "768px";
+    content.style.maxWidth = "768px";
+    applianceContainer.classList.add("appliance-list-dwn-mode");
+
     const opt = {
       margin: 0.5,
       filename: file,
       image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: {
-        unit: "in",
-        format: "letter",
-        orientation: "portrait",
+      html2canvas: { scale: 2, screenX: 0, screenY: 0, windowWidth: 768, windowHeight: content.scrollHeight,
+      },
+      jsPDF: { unit: "in", format: "letter", orientation: "portrait",
       },
       pagebreak: { mode: ["avoid-all", "css", "legacy"] },
     };
+
     await html2pdf().set(opt).from(content).save();
-    console.log("converting to pdf finished");
+
+    // 3. Revert styles back to normal
+    content.style.width = originalWidth;
+    content.style.maxWidth = originalMaxWidth;
+    applianceContainer.classList.remove("appliance-list-dwn-mode");
+
   } catch (err) {
     console.error(err.message);
   }

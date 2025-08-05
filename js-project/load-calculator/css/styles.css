@@ -6,15 +6,17 @@
 
 body {
   margin: 3rem;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial,
+  font-family:  'Poppins',"Lucida Sans", Arial,
     sans-serif;
   line-height: 1.6;
 }
 
 h1 {
   font-size: 3.5rem;
-  font-weight: 400;
+  font-weight: 700;
   padding-bottom: 20px;
+  line-height: 50px;
+  text-align: center;
 }
 
 h2 {
@@ -51,13 +53,23 @@ button {
 .cal-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width: 100% !important;
+  max-width: 100% !important;
   gap: 30px;
   border-radius: 3px;
 }
+
+
 .appliance-list{
   padding: 30px 20px;
   max-height: 850px;
   overflow-y: auto;
+}
+
+.appliance-list-dwn-mode{
+  max-height: none;
+  overflow-y: visible;
+  padding: 30px 20px;
 }
 
 .calculator,
