@@ -144,6 +144,7 @@ button {
   padding: 40px;
   font-size: 18px;
 }
+
 .card {
   display: grid;
   grid-template-columns: 2fr auto;
@@ -225,7 +226,7 @@ button {
 
 .caution{
   position: absolute;
-  top: 30px;
+  top: 20px;
   color: white;
   z-index: 10;
   text-align: center;
@@ -257,5 +258,10 @@ button {
 
   .results {
     grid-template-columns: auto auto;
+  }
+
+  .form-2 {
+    width: 90%;
+    margin-top: 60px;
   }
 }
