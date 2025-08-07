@@ -40,6 +40,7 @@ button {
   background: linear-gradient(to left, #e5dd03, rgba(151, 146, 6, 0.2));
   text-align: center;
   border: none;
+  min-width: 400px;
   border-radius: 15px;
   transform: scale3d(1, 1, 1);
   transition: all 0.3s ease-in;
@@ -200,6 +201,7 @@ button {
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
+  min-width: 400px;
   width: 50%;
   padding: 30px;
   box-shadow: 0 30px 20px ;
