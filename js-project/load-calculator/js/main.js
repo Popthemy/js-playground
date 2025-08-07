@@ -37,7 +37,6 @@ const setErrormessage = (fields, emptyFields = []) => {
   clearCalFormErrorMessage(fields);
 
   emptyFields.forEach((field) => {
-    console.log(field);
     const inputElem = document.getElementById(field.id);
     const nextElem = inputElem.nextElementSibling;
 
@@ -148,7 +147,7 @@ form2.addEventListener("submit", function (e) {
   const fieldForm = backupContainer.querySelector(".form-group");
 
   if (Number.isNaN(backupDay)) {
-    setErrormessage([fieldForm], [{ id: "backupTime", value: backupDay }]);
+    setErrormessage([fieldForm], [{ id: "backupDay", value: backupDay }]);
     return;
   }
 
@@ -223,6 +222,7 @@ btnReset.addEventListener("click", function (e) {
   const cards = applianceContainer.querySelectorAll(".card");
   cards.forEach((card) => removeCard(card));
 });
+
 
 btnDownload.addEventListener("click", async function (e) {
   e.preventDefault();
