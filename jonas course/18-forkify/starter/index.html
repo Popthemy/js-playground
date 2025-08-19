@@ -274,17 +274,31 @@
           <label>Servings</label>
           <input value="23" required name="servings" type="number" />
         </div>
-
-        <div class="upload__column">
+        
+        <div class="upload_ingredients">
           <h3 class="upload__heading">Ingredients</h3>
+          <div class="ingredient__details"data-ingredient-count="1">
+            <div>
+              <h3>Quantity</h3>
+              <input value="0.5" type="text" required name="quantity" placeholder="Enter the quantity"/>
+            </div>
+
+            <div>
+              <h3>Unit</h3>
+              <input value="kg" type="text" required name="unit" placeholder="Enter the unit in kg"/>
+            </div>
+
+            <div>
+              <h3>Description</h3>
+              <input value="Rice" type="text" required name="description" placeholder="Enter the description"/>
+            </div>
+          </div>
+
+<!--           
           <label>Ingredient 1</label>
-          <input
-            value="0.5,kg,Rice"
-            type="text"
-            required
-            name="ingredient-1"
-            placeholder="Format: 'Quantity,Unit,Description'"
-          />
+          <input value="0.5,kg,Rice" type="text" required name="ingredient-1" placeholder="Format: 'Quantity,Unit,Description'"/>
+
+
           <label>Ingredient 2</label>
           <input
             value="1,,Avocado"
@@ -316,7 +330,7 @@
             type="text"
             name="ingredient-6"
             placeholder="Format: 'Quantity,Unit,Description'"
-          />
+          /> -->
         </div>
 
         <button class="btn upload__btn">
