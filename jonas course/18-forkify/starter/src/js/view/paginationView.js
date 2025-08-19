@@ -23,7 +23,7 @@ class PaginationView extends View {
     if (curPage === 1 && totalPage > 1) {
       return `
       <button data-goto="${curPage + 1}" class="btn--inline pagination__btn--next">
-            <span>Page ${curPage + 1}</span>
+            <span>Page ${curPage + 1} /${totalPage}</span>
             <svg class="search__icon">
               <use href="${iconsUrl}#icon-arrow-right"></use>
             </svg>
@@ -33,25 +33,31 @@ class PaginationView extends View {
 
     if (totalPage === curPage && totalPage > 1) {
       return `
-      <button data-goto="${curPage - 1}" class="btn--inline pagination__btn--prev">
+      <button data-goto="${
+        curPage - 1
+      }" class="btn--inline pagination__btn--prev">
             <svg class="search__icon">
               <use href="${iconsUrl}#icon-arrow-left"></use>
             </svg>
-            <span>Page ${curPage - 1}</span>
+            <span>Page ${curPage - 1}/${totalPage}</span>
       </button>
       `;
     }
 
     if (curPage < totalPage) {
       return `
-      <button data-goto="${curPage - 1}" class="btn--inline pagination__btn--prev">
+      <button data-goto="${
+        curPage - 1
+      }" class="btn--inline pagination__btn--prev">
             <svg class="search__icon">
               <use href="${iconsUrl}#icon-arrow-left"></use>
             </svg>
-            <span>Page ${curPage - 1}</span>
+            <span>Page ${curPage - 1}/${totalPage}</span>
       </button>
-      <button data-goto="${curPage + 1}" class="btn--inline pagination__btn--next">
-            <span>Page ${curPage + 1}</span>
+      <button data-goto="${
+        curPage + 1
+      }" class="btn--inline pagination__btn--next">
+            <span>Page ${curPage + 1}/${totalPage}</span>
             <svg class="search__icon">
               <use href="${iconsUrl}#icon-arrow-right"></use>
             </svg>
@@ -59,7 +65,7 @@ class PaginationView extends View {
       `;
     }
   
-    return; // when a single page just return
+    return ''; // when a single page just return
 
   }
 }
