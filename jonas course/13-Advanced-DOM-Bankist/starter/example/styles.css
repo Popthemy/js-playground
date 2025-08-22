@@ -1,0 +1,38 @@
+* {
+  padding:0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  align-items: center;
+  justify-content: center;
+  margin:125px;
+  background-color: rgb(31, 83, 66);
+
+}
+
+.color-box{
+  border: black;
+  border-style: dashed;
+  border-color: white;
+  height: 400px;
+  background-color: rgb(0, 255, 13);
+}
+
+.btn {
+  padding :15px;
+  font-size: 14px;
+  font-weight: 900;
+  border-radius: 30px;
+  width: 150px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  color: rgb(31, 83, 66);
+  border-color: rgb(31, 144, 106);
+}
+
+.btn:hover{
+  color: rgb(255, 255, 255);
+  background-color:  rgb(35, 171, 125);
+}
