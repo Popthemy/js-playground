@@ -1,0 +1,17 @@
+a tag
+href is an attribute
+
+box model
+- content: what inside the box it has width, height
+- padding : transparent area around around the content
+- border : around the padding and the content
+- margin : space between 2 element , it outside the box
+- fill area: every area except the margin
+
+Best practice
+- Naming use course-image instead of courseImage
+- reset all margin and padding property using *{margin: 0, pad:0, box-sizing: border-box;}
+- box-sizing makes sure that the margin and padding are calculated with the height and margin we set.
+
+Child element
+- access the element that inside a tag for styling it alone eg contact-form p {}

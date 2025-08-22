@@ -1,0 +1,29 @@
+body{
+  margin: 30px;
+  text-align: center;
+  
+}
+
+.images{
+  display: grid;
+
+}
+
+
+.btn-slideshow{
+  font-size: 30px;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 30px;
+  margin-top: 30px;
+  padding: 15px 15px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.images img{
+  max-height: 400px;
+  transition: all 0.3s ease-in;
+  justify-self: center;
+}

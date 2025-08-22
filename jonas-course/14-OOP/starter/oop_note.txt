@@ -1,0 +1,89 @@
+OOP
+creating objects in js
+
+Concept of OOP
+- Polymorphism
+- Inheritance
+- Abstraction
+- Encapsulation
+
+OOP in javascript : prototype
+All objects in javascript are linked Prototype
+
+Prototype contain properties and method that all object linked 
+to that prototype can use called *prototypal Inheritance*
+
+3 way to create prototype
+- Construction function: techniques to create object from a function. 
+  it the wau array , maps / sets are created.
+- ES6 classes: modern way it uses construction function under the hood
+
+- Object.create() : most staightforward way of linking object to a prototype object 
+
+
+the diff. btw regular function and construction function is the `new` keyword
+const Person = function(firstName, birthYear){
+  this.firstName = firstName,
+  this.birthYear = birthYear
+};
+
+const themy = new Person('themy', 1992);
+console.log(themy); // Person(firstName:themy, birthYear:1992)
+
+// When we use new to call the function 4 things happen;
+1. New {} is created
+2. function is called and this = {};
+3. {} linked to the prototype
+4. function automatically return {} 
+
+prototypes
+- each and every function in javascript has prototype
+
+
+the proto of the object is the prototype of the constructor function
+console.log(themy.__proto__ === Person.prototype) //true
+
+The underscore __proto__ always points to the object prototype
+
+The prototype and its prototype object always form the prototype chain.
+This chain is similar to `scope chain` but it works with properties and method.
+
+prototypal Inheritance is a mechanism for inheriting code
+
+Note: 
+1. classes aren't hoisted, they can't be used until declared
+2. they are first class citizen. can be and argument and can be return from a function.
+3. classes are executed in strict 
+
+
+SETTER and GETTER: the accessor properties
+GETTER it use to set value  that needs calculation before it can be derived. It also a method but you call it like a property.
+
+Static method
+They are defined on the class itself (class constructor).They aren't available on the class instance.
+e.g Array.from('hello'), Number.parseFloat(12)
+
+Static method are not available on instances.
+
+Inheritance between classes 
+1. Construction function
+it extends the object of the parent to the child through prototype chain.
+the prototype copy of the parent should be first before other prototype are included
+Student.prototype = Object.create(Person.Prototype) 
+then we can included
+Student.prototype.announce = ... 
+if we do it other way round, the prototype of the children will overwrite the child prototype.because object.create return an empty object
+
+After setting the prototype we should reset the constructor method.
+
+2. ES6 classes: To define inheritance we need to use;
+-  `extends` for the parent to child linking
+- `super` which is the constructor of the parent class. it is to be specified first 
+when there is need for additional parameter to be used e.g `course` in the student else ignore.'
+
+Data Privacy is applied using encapsulation to hide method and properties from been accessed from outside the class.
+It let us change these details with confidence knowing no other methods rely on them.
+
+Js doesn't have support for private properties and method yet but they use a convention for 
+identifying private method which is to concat `_`+ method or property name e.g this._pin
+.These method and properties are called `Protected`

@@ -1,0 +1,11 @@
+Destructing is a way of unpacking variables into separate variable.
+It also breaking complex data structure into a smaller DS like a variable.
+
+Source of data
+1. from the source program themselves
+2. from user input from the UI e.g forms
+3. from external source web API
+
+From collection of data to storage.
+
+how you store data depends on the needs either simple list (array or sets) or key values (object, maps)_

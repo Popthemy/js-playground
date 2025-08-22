@@ -1,0 +1,42 @@
+Async : means not running at same time. SetTimeout or loading `src` of an image is asynchronous
+We can use asynchronous call to load data from a third party API.
+
+AJAX (Asynchronous Javascript and XML).It allows us to load data rom remote servers without having to reload.
+We use to retrieve data we can us dynamically.
+
+API: are used for communication and information exchange.
+
+Examples of APi: DOM API, Geo-location, own class api
+
+Call back hell:
+It happens when there nested call back function inside another. It could happen
+in AJAX calls also. It is denoted by a triangle and it a bad coding practice 
+before it makes code hard to maintain.
+
+Promises:
+- It is a container for a future value or  it an object used as a placeholder for the future result of async operation.
+
+Benefit
+- We no longer need to rely on events and callbacks to handle async result.
+
+THE PROMISE LIFECYCLE
+- Pending - Before the future value is available 
+- Settled - the result of the promise. it the promise state
+
+Promise state
+either fulfilled (success) or rejected (error happened).
+
+We can Build (returned from the fetch()) or consume a promise
+
+The goal of promise is t relief call back hell. Don't next promises inside each other.a fetch always return a promise.
+
+How can asynchronous code be executed in a non-blocking way, if there is only-one thread od execution in the engine?
+Javascript can't multitask but Javascript runtime engine involves what it requires for to run concurrently. 
+The JRE includes the WEB API(DOM, Timers, Fetch) , Call Back Queue,MicroStack queue(has priority over call back queue) Call Stack, Event loop and heap.
+When js executes code it move some long running code into WEB Api environment to run the code there, after its condition is met it transfer it to the 
+microtasks queue if it a fetch task or into the callback queue if it DOM(click,mouseenter,), timers activity. 
+then if the call stack (it where the code that being executed is stored), the event loop `take` this activity from the call back to add to the call stack for execution.
+
+We build promise to wrap call back based 
+Promisifying means to wrap call back based asynchronous behaviour into promised based.
+When chaining promise we call another promise as the return value of the first promise

@@ -1,0 +1,44 @@
+- We write code in modules
+- modules makes up packages which are available on the npm.
+- npm is used to manage our packages and packages lives in them
+
+The Build process produce the javascript bundle that will be sent to the browser for processing
+- Bundling - it compresses our module into a single file and convert syntax to old syntax that browser can understand
+- Transpiling/ polyfiling - using babel convert modern js syntax to Es5 so all browser can understand our language.
+All these process is done using Webpack(requires configuration) and Parcel(doesn't require config)
+
+Characteristics of module
+- Compose Software, Abstraction , Isolation building, Reusability, Organized code
+
+Difference between Module and scripts
+                   Module                                  scripts
+Variable        Top level variable                      Global scope
+Default mode   Strict mode                                Sloppy mode
+Top level this   undefined                                Window
+import & Export   Yes                                     No
+Html Linking   <script type='module'>                     <script>
+file downloading Async                                    Sync (unless you use defer or async attribute)
+
+Note: when working with module you have to specify type="module" when importing the scripts.
+Type of import: Named import and Default import
+
+use default: 1 per module(only when we want to export only one thing from a module)
+
+Top-level await: when working with module we can now use await without the async but it does code blocking.
+
+Module system in javascript
+Es6 Module 
+Moudule patter using IIFE
+AMD modules Common JS module (but they are not natively js implementation )
+
+npm install/ i - to install depencies
+npm install package_name@version - install a particular version
+
+you don't include the node modules as part of the files to be pushed to git 
+
+Install parcel for dev : npm install parcel --save-dev (it a dev tool)
+to bundle our module we can use: npx or use scripts
+npx: npx parcel entry_file_name.Html
+using script: include in the package.json scripts and you can run with npm run start( if start is the specified name)
+
+to install a package globally use the flag -globally

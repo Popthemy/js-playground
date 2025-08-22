@@ -1,0 +1,59 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: greenyellow;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  padding: 50px;
+}
+
+h1{
+  font-size: 50px;
+  margin-bottom: 25px;
+}
+h2 {
+  margin-bottom: 25px;
+  margin-top: 25px;
+  text-align: center;
+}
+
+h3{
+margin: 10px;
+text-align: center;
+}
+
+div{
+  margin: 25px;
+}
+
+p{
+  margin-bottom: 20px;
+}
+
+.first {
+  color: red;
+}
+
+#contact-form{
+  background-color: yellow;
+  border: 5px solid red;
+  width: 450px;
+  padding: 25px;
+}
+
+input, button {
+  padding: 10px;
+  font-size: 15px;
+}
+
+#contact-form h3{
+  color:blueviolet
+}
+
+#logo {
+  height: 140px;
+}

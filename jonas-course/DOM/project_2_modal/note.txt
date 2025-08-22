@@ -1,0 +1,12 @@
+When we need to effect more style changes when a button is clicked we can 
+include the style in a class and use js to add or remove these class using .classList() when we need it 
+
+handling keyboard event (they are global event ) 
+we listen on the whole document
+Types of event for keyboard: 
+ - key up: it happen when we lift our finger off the keyboard
+ - key press: it happens when we continually press our hand on the keyboard
+ - key down: happens when we press down on the key 
+
+ Information about which key is pressed will be stored in the event object  when the event is occurs
+  the object will contain the key tht was pressed and we can pass it as argument to the event listener.

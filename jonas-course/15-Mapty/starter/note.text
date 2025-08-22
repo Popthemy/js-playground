@@ -1,0 +1,18 @@
+Geo location Api is a web API used to get user location
+to get location it show an alert to the user to seek consent.
+It takes 2 function : first to be executed when the user allow 
+and second when the user rejects
+
+navigator.geolocation.getCurrentPosition(callOnSucces, errorCallback)
+
+When we use more than one script global variable defined in one of the scrip can be accessed
+in the script loaded after it.
+
+#local storage is a web api good for storing small amount of data in key value pairs.
+local storage is blocking so must not be used to store large amount of data because it will slow down the application
+localStorage.setItem(): add item to the local storage
+localStorage.getItem(): retrieve item from the local storage
+Local storage is tied the to the application url
+JSON.Stringify() : converts object into a string but they loose their prototypal inheritance
+
+JSON.Parse(): used to convert string to an object

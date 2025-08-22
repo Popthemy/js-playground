@@ -1,0 +1,11 @@
+DOM FUnction
+- .innerhtml to control the content inside any html block 
+e.g     containerMovements.innerHTML = '';
+
+-     containerMovements.insertAdjacentHTML('afterbegin', html);
+control the location where the html element will be added to.
+the .insertAdjacentHTML is a function that takes 2 parameter (location, html content);
+the location can be :
+ beforebegin (add new element before the block), afterbegin (add new element inside the block), 
+ beforeend (add new element before the previous element in the body)
+ afterend (add new element after the prevoius element )
