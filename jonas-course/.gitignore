@@ -1,0 +1,8 @@
+node_modules/          # Ignores root-level node_modules
+**/node_modules/       # Ignores node_modules in any subdirectory
+
+dist/                  # Ignores root-level dist
+**/dist/               # Ignores dist in submodules or subfolders
+
+.parcel-cache/         # Ignores .parcel-cache in root
+**/.parcel-cache/      # Ignores .parcel-cache anywhere
