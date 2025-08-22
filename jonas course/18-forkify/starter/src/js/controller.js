@@ -98,7 +98,7 @@ const controlAddRecipe = async function (newRecipe) {
     // upload the new recipe
     addRecipeView.renderSpinner();
     await model.uploadRecipe(newRecipe);
-    console.log(model.state.recipe);
+    // console.log(model.state.recipe);
 
     // render recipe
     recipeView.render(model.state.recipe)
@@ -122,6 +122,7 @@ const controlAddRecipe = async function (newRecipe) {
     addRecipeView.renderErrorMsg(err)
   }
 };
+
 
 const welcome = () => {
   console.log('Welcome to Forkify!!!')

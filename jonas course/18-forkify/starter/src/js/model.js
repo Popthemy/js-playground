@@ -12,26 +12,25 @@ export const state = {
   bookmarks: [],
 };
 
-
-const createdRecipeObject = function(data){
+const createdRecipeObject = function (data) {
   let { recipe } = data.data;
   return {
-      id: recipe.id,
-      title: recipe.title,
-      image: recipe.image_url,
-      publisher: recipe.publisher,
-      sourceUrl: recipe.source_url,
-      cookingTime: recipe.cooking_time,
-      servings: recipe.servings,
-      ingredients: recipe.ingredients,
-      ...(recipe.key && {key:recipe.key})
-    };
-}
+    id: recipe.id,
+    title: recipe.title,
+    image: recipe.image_url,
+    publisher: recipe.publisher,
+    sourceUrl: recipe.source_url,
+    cookingTime: recipe.cooking_time,
+    servings: recipe.servings,
+    ingredients: recipe.ingredients,
+    ...(recipe.key && { key: recipe.key }),
+  };
+};
 
 export const loadRecipe = async function (id) {
   try {
     const data = await AJAX(`${API_URL}${id}?key=${API_KEY}`);
-    state.recipe = createdRecipeObject(data)
+    state.recipe = createdRecipeObject(data);
 
     if (state.bookmarks.some(bookmark => bookmark.id == id)) {
       state.recipe.bookmarked = true;
@@ -54,7 +53,7 @@ export const loadSearchResults = async function (query) {
         title: recipe.title,
         image: recipe.image_url,
         publisher: recipe.publisher,
-        ...(recipe.key && {key:recipe.key})
+        ...(recipe.key && { key: recipe.key }),
       };
     });
     // console.log(state.search.results);
@@ -100,18 +99,24 @@ export const removeBookMark = function (id) {
 
 export const uploadRecipe = async function (newRecipe) {
   try {
-    console.log(newRecipe)
-    const ingredients = Object.entries(newRecipe)
-      .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
-      .map(ingr => {
-        const ingrArr = ingr[1].split(',').map(ing => ing.trim());
- 
-        if (ingrArr.length !== 3) {
-          throw new Error('Wrong format,! Please use the correct format');
-        }
-        const [quantity, unit, description] = ingrArr;
-        return { quantity: quantity ? +quantity : null, unit, description };
-      });
+
+    const mergedIngredients = Object.entries(newRecipe).reduce((acc,[key,value])=>{
+      const match = key.match(/^(\D+)(\d+)$/)
+      if(!match) return acc;
+      
+      const [, field, id] = match;
+      if (!acc[id]){
+        acc[id] = {'quantity':'', 'unit':'', 'description':''};
+      }
+
+      if(['quantity','unit','description'].includes(field)){
+        acc[id][field] = value || '';
+      }
+      return acc
+    },{})
+
+    const ingredients = Object.values(mergedIngredients)
+    console.log(ingredients);
 
     const recipe = {
       title: newRecipe.title,
@@ -120,15 +125,17 @@ export const uploadRecipe = async function (newRecipe) {
       source_url: newRecipe.sourceUrl,
       cooking_time: +newRecipe.cookingTime,
       servings: +newRecipe.servings,
-      ingredients
+      ingredients,
     };
-    const data = await AJAX(`${API_URL}?key=${API_KEY}`,recipe)
+
+    console.log(recipe);
+
+    const data = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
     const structuredRecipe = createdRecipeObject(data);
     state.recipe = structuredRecipe;
     addBookMark(structuredRecipe);
-
   } catch (err) {
-    console.log(err)
+    console.log(err);
     throw err;
   }
 };

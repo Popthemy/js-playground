@@ -4,12 +4,12 @@ export default class View {
   _data;
 
   /**
-   * Render object to the DOM | return markup as strin
+   * Render object to the DOM | return markup as string
    * @param {Object | Object[]} data - The recipe or list of recipe to be rendered to the DOM 
   * @param {Boolean} [render=true] - if false it returns a markup string instead of rendering to the DOM
    * @returns {undefined} view instance
    * @ author Themy
-   *TODO: Finish the impement nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnation
+   *TODO: Finish the implementation
    */
   render(data,render=true) {
     if (!data || (Array.isArray(data) && data.length === 0))
@@ -45,11 +45,11 @@ export default class View {
       const curEl = curElements[i];
 
       // different element: !curEl.isEqualNode(newEl)
-      // where the element contians only text we don't want to change the element with just text
+      // where the element contains only text we don't want to change the element with just text
       if (!newEl.isEqualNode(curEl)) {
         if (newEl.firstChild?.nodeValue.trim() !== '') {
           // set text
-          console.log(curEl,newEl)
+          // console.log(curEl,newEl)
           curEl.textContent = newEl.textContent;
         }
 
@@ -76,7 +76,6 @@ export default class View {
     this._clear();
     this._parentEl.insertAdjacentHTML('afterbegin', markup);
   }
-
 
   renderErrorMsg(message = this._errorMsg) {
     const markup = `

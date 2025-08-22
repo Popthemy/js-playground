@@ -9,7 +9,7 @@ Components of any Architecture
 - Business Logic: involves what the business does and what it needs e.g calculating taxes
 - State: store data about the application, must be kept in sync with ui (state management library: redux, mob x)
 - HTTP Library : responsible for making and recieving request , we use fetch()
-- Application Logic (router): implmentation of the application, handling ui event and routing
+- Application Logic (router): implementation of the application, handling ui event and routing
 - Presentation Logic : displaying application state to keep everything in sync.
 
 
