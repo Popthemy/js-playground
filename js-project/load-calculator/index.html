@@ -5,160 +5,292 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Use our free load calculator to estimate power and energy needs for your home or office. Perfect for solar system planning and energy optimization.">
     <link rel="canonical" href="https://load-calc.onrender.com/" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/lucide@latest/dist/umd/lucide.js" rel="preload" as="script">
     <title>Load Calculator for Solar & Power Needs | Estimate Energy Usage</title>
     <link rel="stylesheet" href="css/styles.css" />
     <script
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"
     ></script>
+    <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <section>
-      <div class="banner">
-        <h1>Solar & Power Load Calculator for Homes and Offices</h1>
-        <p>
-          Use this free online load calculator to estimate your daily power consumption and energy requirements.
-          Perfect for solar system planning, battery sizing, and understanding your electricity usage whether for a home, office, or off-grid setup.
-        </p>
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <div class="nav-brand">
+            <i data-lucide="zap"></i>
+            <span>LoadCalc</span>
+          </div>
+        </nav>
+        <div class="banner">
+          <div class="banner-content">
+            <h1>Solar & Power Load Calculator</h1>
+            <p>
+              Calculate your daily power consumption and energy requirements for solar system planning, battery sizing, and energy optimization.
+            </p>
+            <div class="banner-features">
+              <div class="feature">
+                <i data-lucide="home"></i>
+                <span>Home & Office</span>
+              </div>
+              <div class="feature">
+                <i data-lucide="sun"></i>
+                <span>Solar Planning</span>
+              </div>
+              <div class="feature">
+                <i data-lucide="battery"></i>
+                <span>Battery Sizing</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </header>
 
-    <section class="cal-container">
-      <div class="calculator">
-        <h2>Add Your Appliances</h2>
-        <p>
-          Select your appliances and specify how many hours you use them daily
-        </p>
-        <form class="cal-form form-1">
-          <div class="form-group">
-            <label for="name"> Appliance Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              placeholder="e.g., LED Bulb, Fan, TV"
-            />
-          </div>
+    <main class="main">
+      <div class="container">
+        <div class="cal-container">
+          <section class="calculator">
+            <div class="section-header">
+              <div class="section-icon">
+                <i data-lucide="plus-circle"></i>
+              </div>
+              <div>
+                <h2>Add Your Appliances</h2>
+                <p>Select your appliances and specify how many hours you use them daily</p>
+              </div>
+            </div>
+            
+            <form class="cal-form form-1">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="name">Appliance Name</label>
+                  <div class="input-wrapper">
+                    <i data-lucide="home" class="input-icon"></i>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      placeholder="e.g., LED Bulb, Fan, TV"
+                    />
+                  </div>
+                </div>
 
-          <div class="form-group">
-            <label for="power">Power (Watts)</label>
-            <input
-              type="number"
-              class="form-control"
-              id="power"
-              placeholder="100"
-            />
-          </div>
+                <div class="form-group">
+                  <label for="power">Power (Watts)</label>
+                  <div class="input-wrapper">
+                    <i data-lucide="zap" class="input-icon"></i>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="power"
+                      placeholder="100"
+                    />
+                  </div>
+                </div>
 
-          <div class="form-group">
-            <label for="hours">Hours</label>
-            <input
-              type="float"
-              class="form-control"
-              id="hours"
-              placeholder="8"
-            />
+                <div class="form-group">
+                  <label for="hours">Usage Hours</label>
+                  <div class="input-wrapper">
+                    <i data-lucide="clock" class="input-icon"></i>
+                    <input
+                      type="number"
+                      step="0.1"
+                      class="form-control"
+                      id="hours"
+                      placeholder="8"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-primary form-btn">
+                <i data-lucide="plus"></i>
+                Add Appliance
+              </button>
+            </form>
+
+            <div class="appliance-list">
+              <div class="card hidden">
+                <div class="appliance-info">
+                  <div class="appliance-name">fan</div>
+                  <div class="appliance-energy">10W × 19h = 190Wh/day</div>
+                </div>
+                <div class="appliance-actions">
+                  <span class="appliance-power">10W</span>
+                  <button class="btn btn-secondary btn-sm">
+                    <i data-lucide="trash-2"></i>
+                    Remove
+                  </button>
+                </div>
+              </div>
+
+              <div class="empty-appliance">
+                <div class="empty-state">
+                  <div class="empty-icon">
+                    <i data-lucide="plug-zap"></i>
+                  </div>
+                  <h3>No appliances added yet</h3>
+                  <p>Start by adding your electrical devices above to calculate your power needs</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="extra-action hidden">
+              <div class="action-buttons">
+                <button class="btn btn-primary btn-download">
+                  <i data-lucide="download"></i>
+                  Download Report
+                </button>
+                <button class="btn btn-secondary btn-reset">
+                  <i data-lucide="refresh-cw"></i>
+                  Reset All
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="summary">
+            <div class="section-header">
+              <div class="section-icon">
+                <i data-lucide="bar-chart-3"></i>
+              </div>
+              <div>
+                <h2>System Calculations</h2>
+                <p>Your power consumption and system requirements</p>
+              </div>
+            </div>
+
+            <div class="results">
+              <div class="result-card">
+                <div class="result-icon">
+                  <i data-lucide="zap"></i>
+                </div>
+                <div class="result-content">
+                  <span class="result-value sys-load">0</span>
+                  <span class="result-label">Total Power (W)</span>
+                </div>
+              </div>
+              
+              <div class="result-card">
+                <div class="result-icon">
+                  <i data-lucide="activity"></i>
+                </div>
+                <div class="result-content">
+                  <span class="result-value sys-energy">0</span>
+                  <span class="result-label">Daily Energy (Wh)</span>
+                </div>
+              </div>
+              
+              <div class="result-card">
+                <div class="result-icon">
+                  <i data-lucide="battery"></i>
+                </div>
+                <div class="result-content">
+                  <span class="result-value sys-battery">0</span>
+                  <span class="result-label">Battery (Ah)</span>
+                  <small class="result-note msg" id="msg-voltageTime"></small>
+                </div>
+              </div>
+              
+              <div class="result-card">
+                <div class="result-icon">
+                  <i data-lucide="sun"></i>
+                </div>
+                <div class="result-content">
+                  <span class="result-value sys-panels">0</span>
+                  <span class="result-label">Solar Panels (W)</span>
+                  <small class="result-note msg" id="msg-panelwatt"></small>
+                </div>
+              </div>
+              
+              <div class="result-card">
+                <div class="result-icon">
+                  <i data-lucide="list"></i>
+                </div>
+                <div class="result-content">
+                  <span class="result-value sys-total-appliances">0</span>
+                  <span class="result-label">Total Appliances</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <div class="backup hidden">
+      <div class="modal-overlay overlay"></div>
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-icon">
+            <i data-lucide="settings"></i>
           </div>
-          <button class="btn form-btn">Add</button>
+          <div class="modal-title">
+            <h3>Backup Configuration</h3>
+            <p class="caution">
+              Configure backup time to calculate battery and solar panel requirements for your solar-inverter system.
+            </p>
+          </div>
+          <button type="button" class="btn btn-ghost btn-modal">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        
+        <form class="cal-form form-2">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="backupDay">Number of backup days</label>
+              <div class="input-wrapper">
+                <i data-lucide="calendar" class="input-icon"></i>
+                <input
+                  type="number"
+                  step="0.1"
+                  class="form-control"
+                  id="backupDay"
+                  placeholder="2"
+                />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="sys-voltage">System Voltage</label>
+              <div class="select-wrapper">
+                <i data-lucide="zap" class="select-icon"></i>
+                <select class="form-control" id="sys-voltage">
+                  <option value="12">12V</option>
+                  <option value="24">24V</option>
+                </select>
+                <i data-lucide="chevron-down" class="select-arrow"></i>
+              </div>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary form-btn">
+            <i data-lucide="check"></i>
+            Submit Configuration
+          </button>
         </form>
+      </div>
+    </div>
 
-        <div class="appliance-list">
-          <div class="card hidden">
-            <div class="appliance-info">
-              <div class="appliance-name">fan</div>
-              <div class="appliance-energy">10W × 19h = 190Wh/day</div>
-            </div>
-            <div class="appliance-power">
-              10W
-              <button class="btn btn-secondary">Remove</button>
-            </div>
-          </div>
-
-          <div class="empty-appliance">
-            <p>
-              ⚡⚡⚡ <br />
-              No appliances added yet. Start by adding your electrical devices
-              above.
-            </p>
-          </div>
-        </div>
-
-        <div class="extra-action hidden">
-          <button class="btn btn-download">Download</button>
-          <button class="btn btn-secondary btn-reset">Reset</button>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>Created by <a href="https://github.com/habibthadev" target="_blank">the original project owner</a> and redesigned by <a href="https://github.com/habibthadev" target="_blank">habibthadev</a></p>
         </div>
       </div>
+    </footer>
 
-      <div class="summary">
-        <h2>System Calculations</h2>
-
-        <div class="results">
-          <div class="system-details">
-            <p>
-              <span class="sys-load">0</span> <br />
-              Total Power Consumption (W) <br />
-            </p>
-          </div>
-          <div class="system-details">
-            <p>
-              <span class="sys-energy">0</span> <br />
-              Daily Energy (WH)
-            </p>
-          </div>
-          <div class="system-details">
-            <p>
-              <span class="sys-battery">0</span> <br />
-              Battery (AH)<br />
-              <small class="msg" id="msg-voltageTime"></small>
-            </p>
-          </div>
-          <div class="system-details">
-            <p>
-              <span class="sys-panels">0</span> <br />
-              Solar Panels Capacity (W) <br />
-              <small class="msg" id="msg-panelwatt"></small>
-            </p>
-          </div>
-          <div class="system-details">
-            <p>
-              <span class="sys-total-appliances">0</span> <br />
-              Number of Appliances
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="backup hidden">
-      <p class="caution">
-        <b>Caution:</b> <br />
-        If you don't include a backup time we won't be able to calculate the
-        battery and solar panel you will need for powering your Solar-inverter
-        System.
-      </p>
-      <form class="cal-form form-2">
-        <button class="btn btn-modal">&times;</button>
-        <div class="form-group">
-          <label for="backupDay"> Number of backup Days </label>
-          <input
-            type="float"
-            class="form-control"
-            id="backupDay"
-            placeholder="8"
-          />
-        </div>
-        <div class="form-group">
-          <label for="voltage"> System Voltage </label>
-          <select class="form-control" id="sys-voltage">
-            <option value="12">12V</option>
-            <option value="24">24V</option>
-          </select>
-        </div>
-        <button class="btn form-btn">Submit</button>
-      </form>
-      <div class="overlay"></div>
-    </section>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+      });
+    </script>
   </body>
 </html>
