@@ -27,6 +27,9 @@ const overlayBackup = document.querySelector(".overlay");
 
 const btnReset = document.querySelector(".btn-reset");
 const btnDownload = document.querySelector(".btn-download");
+const btnModal = document.querySelector(".btn-modal");
+
+let isModalClosable = false;
 
 const clearForm = () => {
   applianceName.value = appliancePower.value = applianceHours.value = "";
@@ -38,14 +41,13 @@ const setErrormessage = (fields, emptyFields = []) => {
 
   emptyFields.forEach((field) => {
     const inputElem = document.getElementById(field.id);
-    const nextElem = inputElem.nextElementSibling;
+    const parentGroup = inputElem.closest('.form-group');
+    const existingError = parentGroup.querySelector('.error-message');
 
-    if (!(nextElem && nextElem.classList.contains("error-message"))) {
-      inputElem.insertAdjacentHTML(
-        "afterend",
-        `
-      <small class="error-message">Please enter a valid ${field.id}</small>
-      `
+    if (!existingError) {
+      parentGroup.insertAdjacentHTML(
+        "beforeend",
+        `<small class="error-message">Please enter a valid ${field.id}</small>`
       );
     }
   });
@@ -53,9 +55,9 @@ const setErrormessage = (fields, emptyFields = []) => {
 
 const clearCalFormErrorMessage = (inputs) => {
   inputs.forEach((input) => {
-    const lastChild = input.lastElementChild;
-    if (lastChild && lastChild.classList.contains("error-message")) {
-      lastChild.remove();
+    const existingError = input.querySelector('.error-message');
+    if (existingError) {
+      existingError.remove();
     }
   });
 };
@@ -67,13 +69,22 @@ const addNewAppliance = function (appliance) {
               <div class="appliance-name">${appliance.name}</div>
               <div class="appliance-energy">${appliance.power}W × ${appliance.hours}h = ${appliance.energy}Wh/day</div>
             </div>
-            <div class="appliance-power">${appliance.power}W
-              <button class="btn btn-secondary">Remove</button>
+            <div class="appliance-actions">
+              <span class="appliance-power">${appliance.power}W</span>
+              <button class="btn btn-secondary btn-sm">
+                <i data-lucide="trash-2"></i>
+                Remove
+              </button>
             </div>
     </div>
     `;
 
   applianceContainer.insertAdjacentHTML("beforeend", html);
+  
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+  
   return;
 };
 
@@ -106,12 +117,16 @@ const loadAppliances = function (e) {
 
   clearCalFormErrorMessage(fields);
   clearForm();
-  // activate set backup time modal
 
   if (applianceList.length < 1) {
     emptyContainer.classList.add("hidden");
     extraContainer.classList.remove("hidden");
     backupContainer.classList.remove("hidden");
+    isModalClosable = false;
+    overlayBackup.scrollIntoView({ behavior: "smooth", block: "center" });
+  } else {
+    backupContainer.classList.remove("hidden");
+    isModalClosable = true;
     overlayBackup.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
@@ -154,7 +169,28 @@ form2.addEventListener("submit", function (e) {
   batteryBackupTime.value = "";
   clearCalFormErrorMessage([fieldForm]);
   backupContainer.classList.add("hidden");
+  isModalClosable = true;
   updateSystemCalculation();
+});
+
+btnModal.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (isModalClosable) {
+    backupContainer.classList.add("hidden");
+  }
+});
+
+overlayBackup.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (e.target === overlayBackup && isModalClosable) {
+    backupContainer.classList.add("hidden");
+  }
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && isModalClosable && !backupContainer.classList.contains("hidden")) {
+    backupContainer.classList.add("hidden");
+  }
 });
 
 const removeCard = function (card) {
@@ -168,6 +204,8 @@ const removeCard = function (card) {
     backupDay = 0;
     messagePanelWatt.textContent = "";
     messageVoltageTime.textContent = "";
+    emptyContainer.classList.remove("hidden");
+    extraContainer.classList.add("hidden");
   }
   updateSystemCalculation();
 };
