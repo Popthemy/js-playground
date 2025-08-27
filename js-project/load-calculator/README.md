@@ -67,3 +67,11 @@ README.md
 ### 📄 License
 
 MIT License — Feel free to use, modify, and share!
+
+
+## Created by 
+[@Popthemy](https://github.com/Popthemy)
+
+## Contributors
+
+- [@habibthadev](https://github.com/habibthadev) – Refactor styles and HTML structure for improved layout
