@@ -41,8 +41,8 @@ const setErrormessage = (fields, emptyFields = []) => {
 
   emptyFields.forEach((field) => {
     const inputElem = document.getElementById(field.id);
-    const parentGroup = inputElem.closest('.form-group');
-    const existingError = parentGroup.querySelector('.error-message');
+    const parentGroup = inputElem.closest(".form-group");
+    const existingError = parentGroup.querySelector(".error-message");
 
     if (!existingError) {
       parentGroup.insertAdjacentHTML(
@@ -55,7 +55,7 @@ const setErrormessage = (fields, emptyFields = []) => {
 
 const clearCalFormErrorMessage = (inputs) => {
   inputs.forEach((input) => {
-    const existingError = input.querySelector('.error-message');
+    const existingError = input.querySelector(".error-message");
     if (existingError) {
       existingError.remove();
     }
@@ -80,11 +80,11 @@ const addNewAppliance = function (appliance) {
     `;
 
   applianceContainer.insertAdjacentHTML("beforeend", html);
-  
-  if (typeof lucide !== 'undefined') {
+
+  if (typeof lucide !== "undefined") {
     lucide.createIcons();
   }
-  
+
   return;
 };
 
@@ -118,15 +118,12 @@ const loadAppliances = function (e) {
   clearCalFormErrorMessage(fields);
   clearForm();
 
+  isModalClosable = true;
   if (applianceList.length < 1) {
     emptyContainer.classList.add("hidden");
     extraContainer.classList.remove("hidden");
     backupContainer.classList.remove("hidden");
     isModalClosable = false;
-    overlayBackup.scrollIntoView({ behavior: "smooth", block: "center" });
-  } else {
-    backupContainer.classList.remove("hidden");
-    isModalClosable = true;
     overlayBackup.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
@@ -188,7 +185,11 @@ overlayBackup.addEventListener("click", function (e) {
 });
 
 document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" && isModalClosable && !backupContainer.classList.contains("hidden")) {
+  if (
+    e.key === "Escape" &&
+    isModalClosable &&
+    !backupContainer.classList.contains("hidden")
+  ) {
     backupContainer.classList.add("hidden");
   }
 });
@@ -261,7 +262,6 @@ btnReset.addEventListener("click", function (e) {
   cards.forEach((card) => removeCard(card));
 });
 
-
 btnDownload.addEventListener("click", async function (e) {
   e.preventDefault();
   if (!applianceList.length) {
@@ -290,10 +290,14 @@ btnDownload.addEventListener("click", async function (e) {
       margin: 0.5,
       filename: file,
       image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2, screenX: 0, screenY: 0, windowWidth: 768, windowHeight: content.scrollHeight,
+      html2canvas: {
+        scale: 2,
+        screenX: 0,
+        screenY: 0,
+        windowWidth: 768,
+        windowHeight: content.scrollHeight,
       },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait",
-      },
+      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
       pagebreak: { mode: ["avoid-all", "css", "legacy"] },
     };
 
@@ -303,7 +307,6 @@ btnDownload.addEventListener("click", async function (e) {
     content.style.width = originalWidth;
     content.style.maxWidth = originalMaxWidth;
     applianceContainer.classList.remove("appliance-list-dwn-mode");
-
   } catch (err) {
     console.error(err.message);
   }
